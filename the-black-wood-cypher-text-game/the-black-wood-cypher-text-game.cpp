@@ -134,12 +134,30 @@ void phase_1_msg() {
         case 1:
             search_study();
             break;
-        case 2:
-            std::cout << "You gather the guests and announce the murder...\n";
+        case 2: {
+            const std::vector<std::string> announce_guests = {
+                "You step into the grand hall and call the other guests together.",
+                "Lena's eyes narrow, Julian pales, and Marcus clenches his jaw.",
+                "\"Elias Vance has been murdered,\" you announce.",
+                "A tense silence follows. Each guest reacts differently—shock, denial, suspicion.",
+                "You watch their faces carefully, but it's hard to read their true feelings.",
+                "The storm rages outside, and you realize you are truly trapped here with a killer."
+            };
+            read_by_line(announce_guests, 0);
             break;
-        case 3:
-            std::cout << "You query the Ariadne AI...\n";
+        }
+        case 3: {
+            const std::vector<std::string> query_ai = {
+                "You approach the Ariadne terminal, its screen glowing softly in the dim light.",
+                "\"Ariadne, display the security log for the last hour,\" you command.",
+                "The AI's voice is calm: \"Accessing logs...\"",
+                "A list of entries appears, but several lines are corrupted or missing.",
+                "\"Some data is unavailable due to a system error,\" Ariadne intones.",
+                "You make a note to investigate the server room later. Someone—or something—has tampered with the records."
+            };
+            read_by_line(query_ai, 0);
             break;
+        }
     }
 }
 
@@ -178,7 +196,7 @@ void phase_2_msg(bool &foundCufflink, bool &foundDroneLogs, bool &julianLied, bo
             if (loc == 3) lenaCatchesYou = true; // Early game over
             if (loc == 4) julianLied = true;
             if (loc == 5) foundHiddenSchema = true;
-            
+
             if (lenaCatchesYou) return; // Early exit
         } else {
             std::cout << "Who do you want to interview?\n";
