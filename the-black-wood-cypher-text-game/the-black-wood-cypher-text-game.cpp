@@ -34,6 +34,10 @@ const std::vector<std::string> info_1 = {
 };
 
 // effects
+void print_divider() {
+    std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+}
+
 void type_text(const std::string& text, int delay_ms = 55) {
     for (char c : text) {
         std::cout << c << std::flush;
@@ -63,10 +67,11 @@ void introduction_msg() {
 
 // Mini-investigation for searching the study (choice 1)
 void search_study() {
-    std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+    print_divider();
     const std::vector<std::string> study_search_prompt = {
         "You quickly search the study before anyone else can.",
-        "You notice several things out of place. Where do you want to look first?",
+        "You notice several things out of place."
+        "- - Where do you want to look first? - - -\n",
         "1. The desk and its drawers",
         "2. The window and sill",
         "3. The carpet near the body",
@@ -74,7 +79,7 @@ void search_study() {
         "(You may choose one area to examine closely.)"
     };
 
-    read_by_line(study_search_prompt, 0);
+    read_by_line(study_search_prompt);
     int evidence_choice;
     std::cout << "Enter your choice (1-4): ";
     std::cin >> evidence_choice;
@@ -86,22 +91,22 @@ void search_study() {
     }
     switch (evidence_choice) {
         case 1:
-            std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+            print_divider();
             type_text("You open the desk drawers. Inside, you find a hidden compartment containing a small, silver cufflink with the initials 'M.T.'", 30);
             type_text("(You pocket the cufflink. This could be important evidence.)", 30);
             break;
         case 2:
-            std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+            print_divider();
             type_text("You inspect the window and sill. The window is sealed tight, but you notice a faint, oily residue on the sill.", 30);
             type_text("(Strange. Could someone have used a tool or device here?)", 30);
             break;
         case 3:
-            std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+            print_divider();
             type_text("You kneel by the carpet. Embedded in the fibers is a tiny, broken piece of black plastic—possibly from a drone or gadget.", 30);
             type_text("(You take the fragment. It might match something later.)", 30);
             break;
         case 4:
-            std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+            print_divider();
             type_text("You examine the AI terminal. The screen is dark, but faint fingerprints are visible on the glass.", 30);
             type_text("(Someone accessed the terminal recently. The logs may reveal more.)", 30);
             break;
@@ -115,7 +120,8 @@ void phase_1_msg() {
     const std::vector<std::string> phase_1 = {
         "You stand over the body of Elias Vance.",
         "The local network is down, and the storm is getting worse.",
-        "You are on your own. Where do you begin?\n",
+        "You are on your own.",
+        "- - - Where do you begin? - - -\n",
         "1. Examine the study for physical clues before anyone else can.",
         "2. Announce the murder to the other guests and gauge their reactions.",
         "3. Query the Ariadne AI for the official security log of the last hour.\n"
@@ -130,6 +136,7 @@ void phase_1_msg() {
         std::cout << "Invalid choice. Please enter 1, 2, or 3: ";
         std::cin >> choice;
     }
+
     switch(choice) {
         case 1:
             search_study();
@@ -143,7 +150,7 @@ void phase_1_msg() {
                 "You watch their faces carefully, but it's hard to read their true feelings.",
                 "The storm rages outside, and you realize you are truly trapped here with a killer."
             };
-            read_by_line(announce_guests, 0);
+            read_by_line(announce_guests);
             break;
         }
         case 3: {
@@ -155,14 +162,14 @@ void phase_1_msg() {
                 "\"Some data is unavailable due to a system error,\" Ariadne intones.",
                 "You make a note to investigate the server room later. Someone—or something—has tampered with the records."
             };
-            read_by_line(query_ai, 0);
+            read_by_line(query_ai);
             break;
         }
     }
 }
 
 // PHASE 3 -- Investigate loop
-void phase_2_msg(bool &foundCufflink, bool &foundDroneLogs, bool &julianLied, bool &foundHiddenSchema, bool &lenaCatchesYou) {
+void phase_2_msg(bool &found_cufflink, bool &foundDroneLogs, bool &julian_lied, bool &found_hidden_schema, bool &lena_catches_you) {
     for (int i = 0; i < 3; ++i) {
         std::cout << "You have " << (3 - i) << " actions remaining. What will you do next?\n";
         std::cout << "1. Investigate a Location." << std::endl;
@@ -177,46 +184,86 @@ void phase_2_msg(bool &foundCufflink, bool &foundDroneLogs, bool &julianLied, bo
             std::cin >> choice;
         }
 
+        print_divider();
         if (choice == 1) {
             const std::vector<std::string> location_options = {
-                "Where do you want to search?",
+                "- - - Where do you want to search? - - -\n",
                 "1. Study",
                 "2. Server Room",
                 "3. Lena's Suite",
                 "4. Julian's Suite",
                 "5. Marcus's Terrace"
             };
-            read_by_line(location_options, 0);
+            read_by_line(location_options);
             int loc;
             std::cin >> loc;
 
             // Set flags based on location
-            if (loc == 1) foundCufflink = true;
+            if (loc == 1) found_cufflink = true;
             if (loc == 2) foundDroneLogs = true;
-            if (loc == 3) lenaCatchesYou = true; // Early game over
-            if (loc == 4) julianLied = true;
-            if (loc == 5) foundHiddenSchema = true;
+            if (loc == 3) lena_catches_you = true; // Early game over
+            if (loc == 4) julian_lied = true;
+            if (loc == 5) found_hidden_schema = true;
 
-            if (lenaCatchesYou) return; // Early exit
+            if (lena_catches_you) return; // Early exit
         } else {
-            std::cout << "Who do you want to interview?\n";
-            std::cout << "1. Lena\n2. Julian\n3. Marcus\n";
+            print_divider();
+            const std::vector<std::string> interview_options = {
+                "Who do you want to interview?",
+                "1. Lena",
+                "2. Julian",
+                "3. Marcus"
+            };
+            read_by_line(interview_options);
             int suspect;
             std::cin >> suspect;
             // Set flags based on interview
-            if (suspect == 2) julianLied = true;
+            if (suspect == 2) julian_lied = true;
         }
     }
 }
 
+// ENDINGS
+void ending(int accused, bool found_cufflink, bool found_drone_logs, bool julian_lied, bool found_hidden_schema, bool lena_catches_you) {
+    if (lena_catches_you) {
+        std::cout << "You were caught in Lena's suite. Game over.\n";
+        return;
+    }
+    if (accused == 1 && found_drone_logs) {
+        std::cout << "You accuse Lena. She confesses. Good ending!\n";
+    } else if (accused == 2 && julian_lied && !found_cufflink) {
+        std::cout << "You accuse Julian, but Marcus proves you wrong. Bad ending.\n";
+    } else if (accused == 4 && found_hidden_schema) {
+        std::cout << "You accuse Ariadne. The AI turns hostile. Action ending!\n";
+    } else {
+        std::cout << "Your accusation fails. The killer gets away.\n";
+    }
+}
+
+// ACCOUSING
+int accusation() {
+    std::cout << "Who do you accuse?\n";
+    std::cout << "1. Lena\n2. Julian\n3. Marcus\n4. Ariadne\n";
+    int accused;
+    std::cin >> accused;
+    while (std::cin.fail() || accused < 1 || accused > 4) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid choice. Enter 1-4: ";
+        std::cin >> accused;
+    }
+    return accused;
+}
+
+// MAIN
 int main() {
     printLogo();
     std::cout << "Press Enter to begin...";
     std::cin.get();
     
-    std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+    print_divider();
     introduction_msg();
-    std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+    print_divider();
     read_by_line(info_1);
 
     phase_1_msg();
@@ -229,7 +276,7 @@ int main() {
     bool lena_catches_you = false;
 
     // investigate loop
-    std::cout << "\n- - - - - - - - - - - - - - - - - - - -\n" << std::endl;
+    print_divider();
     
 
     const std::vector<std::string> phase_2_time_announce = {
@@ -239,6 +286,11 @@ int main() {
     read_by_line(phase_2_time_announce, 1500);
     phase_2_msg(found_cufflink, found_drone_logs, julian_lied, found_hidden_schema, lena_catches_you);
 
+    print_divider();
+    if (lena_catches_you) {
+        ending(0, found_cufflink, found_drone_logs, julian_lied, found_hidden_schema, lena_catches_you);
+        return 0;
+    }
 
 
     return 0;
