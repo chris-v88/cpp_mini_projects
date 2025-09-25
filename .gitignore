@@ -1,3 +1,5 @@
 # Ignore all output folders anywhere in the project
 output/
 **/output/
+
+*.DS_Store
