@@ -71,8 +71,8 @@ void search_study() {
     print_divider();
     const std::vector<std::string> study_search_prompt = {
         "You quickly search the study before anyone else can.",
-        "You notice several things out of place."
-        "- - Where do you want to look first? - - -\n",
+        "You notice several things out of place.",
+        "- - - Where do you want to look first? - - -\n",
         "1. The desk and its drawers",
         "2. The window and sill",
         "3. The carpet near the body",
@@ -82,7 +82,7 @@ void search_study() {
 
     read_by_line(study_search_prompt);
     int evidence_choice;
-    std::cout << "Enter your choice (1-4): ";
+    std::cout << "\nEnter your choice (1-4): ";
     std::cin >> evidence_choice;
     while (std::cin.fail() || evidence_choice < 1 || evidence_choice > 4) {
         std::cin.clear();
@@ -113,7 +113,7 @@ void search_study() {
             break;
     }
     std::cout << "You hear footsteps approaching!" << std::endl;
-    std::cout << "It's time to move on.\n" << std::endl;
+    std::cout << "It's time to move on." << std::endl;
 }
 
 // PHASES 1 - Searching room
@@ -129,7 +129,7 @@ void phase_1_msg() {
     };
     read_by_line(phase_1);
     int choice;
-    std::cout << "What do you do? (Enter 1, 2, or 3): ";
+    std::cout << "\nWhat do you do? (Enter 1, 2, or 3): ";
     std::cin >> choice;
     while (std::cin.fail() || choice < 1 || choice > 3) {
         std::cin.clear();
@@ -189,7 +189,7 @@ void conduct_interview(bool &julian_lied, bool &found_cufflink, bool &foundDrone
     
     print_divider();
     const std::vector<std::string> question_options = {
-        "What question do you want to ask?",
+        "- - - What question do you want to ask? - - -\n",
         "1. \"Where were you when Elias died?\" (Alibi)",
         "2. \"What was your relationship with Elias?\" (Motive)", 
         "3. \"Do you know anything about advanced AI programming?\" (Technical)",
@@ -201,6 +201,7 @@ void conduct_interview(bool &julian_lied, bool &found_cufflink, bool &foundDrone
     read_by_line(question_options);
     
     int question;
+    std::cout << "\nEnter your choice (1-6): ";
     std::cin >> question;
     while (std::cin.fail() || question < 1 || question > 6) {
         std::cin.clear();
@@ -282,23 +283,20 @@ void conduct_interview(bool &julian_lied, bool &found_cufflink, bool &foundDrone
     
     // Add dramatic pause
     std::cout << "\nPress Enter to continue...";
-    std::cin.ignore();
-    std::cin.get();
-    
-    // Add dramatic pause
-    std::cout << "\nPress Enter to continue...";
-    std::cin.ignore();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin.get();
 }
 
 // PHASE 3 -- Investigate loop
 void phase_2_msg(bool &found_cufflink, bool &foundDroneLogs, bool &julian_lied, bool &found_hidden_schema, bool &lena_catches_you) {
     for (int i = 0; i < 3; ++i) {
-        std::cout << "You have " << (3 - i) << " actions remaining. What will you do next?\n";
+        std::cout << "\nYou have " << (3 - i) << " actions remaining." << std::endl;
+        std::cout << "- - - What will you do next? - - -\n";
         std::cout << "1. Investigate a Location." << std::endl;
-        std::cout << "2. Interview a Suspect.\n" << std::endl;
+        std::cout << "2. Interview suspects.\n" << std::endl;
 
         int choice;
+        std::cout << "\nEnter your choice (1-2): ";
         std::cin >> choice;
         while (std::cin.fail() || (choice != 1 && choice != 2)) {
             std::cin.clear();
@@ -307,8 +305,8 @@ void phase_2_msg(bool &found_cufflink, bool &foundDroneLogs, bool &julian_lied, 
             std::cin >> choice;
         }
 
-        print_divider();
         if (choice == 1) {
+            print_divider();
             const std::vector<std::string> location_options = {
                 "- - - Where do you want to search? - - -\n",
                 "1. Study",
@@ -317,19 +315,18 @@ void phase_2_msg(bool &found_cufflink, bool &foundDroneLogs, bool &julian_lied, 
                 "4. Julian's Suite",
                 "5. Marcus's Terrace"
             };
-    read_by_line(location_options);
-    int loc;
-    std::cout << "Enter your choice (1-5): ";
-    std::cin >> loc;
-    while (std::cin.fail() || loc < 1 || loc > 5) {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Invalid choice. Please enter 1-5: ";
-        std::cin >> loc;
-    }
-
-            // Set flags and give narrative feedback based on location
+            read_by_line(location_options, 30);
+            int loc;
+            std::cout << "\nEnter your choice (1-5): ";
+            std::cin >> loc;
+            while (std::cin.fail() || loc < 1 || loc > 5) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid choice. Please enter 1-5: ";
+                std::cin >> loc;
+            }
             print_divider();
+            // Set flags and give narrative feedback based on location
             if (loc == 1) {
                 found_cufflink = true;
                 type_text("You search the study and find a small, silver cufflink under the desk. The initials 'M.T.' are engraved on it.", 30);
@@ -463,7 +460,7 @@ int accusation() {
         "You stand before the three suspects.",
         "Everything depends on this moment.",
         "",
-        "Who killed Elias Vance?",
+        "- - - Who killed Elias Vance? - - -",
         "",
         "1. Lena Petrova - The tech genius with drone access",
         "2. Julian Vance - The desperate son with debts", 
