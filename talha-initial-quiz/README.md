@@ -1,14 +1,14 @@
 ## Question 1:
 Write a C++ program which prompts the user to enter two integer values, stores them in variables named ‘a’ and ‘b’, calculates the following expressions and displays the results on screen. Output of your program must be presentable. You must use minimum possible number of parentheses for evaluating these expressions. 
-1.	(a + b)2 = a2 + 2ab + b2      
-2.	(a - b)2 = a2 - 2ab + b2         
-3.	(a + b)3 = a3 + 3a2b + 3ab2 + b3          
-4.	(a - b)3 = a3 - 3a2b + 3 ab2 - b3          
-5.	a2 - b2 = (a - b) (a + b)          
-6.	a3 - b3 = (a - b)3 + 3 a b (a - b)      
-7.	a3 - b3 = (a - b) (a2 + a b + b2)         
-8.	a3 + b3 = (a + b) (a2 - a b + b2)  
-9.	a3 + b3 = (a + b)3 - 3 a b (a + b) 
+1.	(a + b)^2 = a^2 + 2ab + b^2      
+2.	(a - b)^2 = a^2 - 2ab + b^2         
+3.	(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3          
+4.	(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3          
+5.	a^2 - b^2 = (a - b) (a + b)          
+6.	a^3 - b^3 = (a - b)^3 + 3 a b (a - b)      
+7.	a^3 - b^3 = (a - b) (a^2 + a b + b^2)         
+8.	a^3 + b^3 = (a + b) (a^2 - a b + b^2)  
+9.	a^3 + b^3 = (a + b)^3 - 3 a b (a + b) 
 
 ## Question 2:
 Write a C++ program which takes a character input from user and tells if it is a digit or not. If it is a digit, your program should tell if it is even or odd. If it is not a digit, your program should tell if it is an alphabet or not. If it is an alphabet, your program should tell if it is uppercase or lowercase. If it is not an alphabet, your program should print “It is a special symbol”.
