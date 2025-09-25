@@ -1,13 +1,57 @@
-guests and an omnipresent AI that runs the house, you must use your skills to find the
-
 # The Blackwood Cypher
 
-## Logline
+## Play
+Go here : https://onlinegdb.com/6pQ4h6znA
+Then press "Run" to run the code
+
+---
+
+## Intro
+This is actually an assignment from Codecademy. The homework is asking to create a text-based-game:
+
+```
+Project Goals :
+Create a C++ text adventure with the storyline of your choosing. The program should use your knowledge of C++ conditionals, logic, and loops.
+
+Your program should have a storyline with:
+* a beginning
+* at least three possible endings
+
+Choose any topic you like! Some possible ideas include:
+* A fantasy book you love
+* Your favorite TV show
+* A funny movie
+* A murder mystery
+*  A game show
+
+Program should contain at least three branch points where the user must make a choice about what to do next. At each branch point, the program should:
+* give the user at least two choices
+* accept user input
+* not every story branch needs its own ending; it can also add something and then reconnect with another storyline
+
+Program should incorporate at least one kind of loop.
+Loops come in handy in a couple scenarios:
+* to validate user input (e.g., check if the user entered something other than your listed choices and then list the choices again)
+* to give the user multiple chances to choose a specific outcome (e.g., give a user three chances to pick an option that won’t get them killed)
+* to continue the adventure until the user makes a particular choice
+
+Program should handle user choices using conditional logic. We encourage you to use if/else if statements and switch statements where you see fit.
+```
+
+For this, I choose "A murder mystery" topic. As I'm not much of a creative writer, I actually ask Gemini AI to generate a generic storyline of a murder for me. And below is what Gemnini gave me.
+
+This is a storyline but also a guideline on what I should do for my assignment.
+
+---
+
+## Story Overview
+
+### Logline
 You are a renowned cybersecurity expert invited to the remote, hyper-modern estate of a reclusive tech billionaire for a "monumental announcement." But before he can reveal his secret, he is found murdered in his study, locked from the inside. A storm has cut off all communication, and the only road is blocked. Trapped with a handful of suspicious guests and an omnipresent AI that runs the house, you must use your skills to find the killer before they find you.
 
 ---
 
-## The Setup
+### The Setup
 
 - Player Character (You): An old friend of the victim and a cybersecurity specialist. This gives you a unique set of skills to interact with the high-tech environment.
 
@@ -19,7 +63,7 @@ You are a renowned cybersecurity expert invited to the remote, hyper-modern esta
 
 ---
 
-## The Suspects (and their secrets)
+### The Suspects (and their secrets)
 
 1.  Lena Petrova - The Ambitious Protégé:
     - Relationship: Vance's brilliant but ruthless second-in-command.
@@ -86,7 +130,6 @@ Phase 3: The Accusation
 
 ## Possible Endings
 
-
 1.  **You Accuse the Correct Human:** You lay out the evidence. The killer confesses (e.g., Lena admits she used a hacked service drone to inject a toxin, then had Ariadne wipe the drone's flight log). (Good Ending)
 
 2.  **You Accuse the Wrong Person:** You present your case, but another character provides a piece of evidence that exonerates them. The real killer smirks from the corner, and you know they will get away with it. (Bad Ending)
@@ -99,9 +142,9 @@ This storyline provides a classic setup, a modern twist with the AI, and clear, 
 
 ---
 
-# Game Strucure 
+## Game Structure 
 
-## Part 1: The Introduction
+### Part 1: The Introduction
 
 This is how you'll hook the player. Keep the text clean and use simple dividers to set the scene.
 
@@ -128,7 +171,7 @@ Press Enter to begin...
 
 ---
 
-## Part 2: The First Choice (Branch Point 1)
+### Part 2: The First Choice (Branch Point 1)
 
 Immediately give the player a meaningful choice. This is your first if/else if/else block.
 
@@ -144,7 +187,7 @@ What is your choice? (Enter 1, 2, or 3):
 
 ---
 
-## Part 3: The Investigation (The Loop)
+### Part 3: The Investigation (The Loop)
 
 This is the core of the game. The assignment requires a loop, and this is the perfect place for it. We'll give the player 3 "actions" to take, representing a limited amount of time to solve the crime.
 
@@ -164,7 +207,7 @@ What is your choice? (Enter 1 or 2):
 
 *Note for your code: This is a nested conditional. Inside your `for` loop, you'll have an `if/else` based on this choice.*
 
-### Nested Choice A: Investigate a Location
+#### Nested Choice A: Investigate a Location
 
 The manor is a maze of secrets. Which area do you want to search?
 
@@ -178,7 +221,7 @@ What is your choice? (Enter 1-5):
 
 *Note: Each of these choices can reveal a clue. You can use boolean flags like `bool foundCufflink = false;` and set them to `true` when a player finds something. This allows you to build up evidence for the final accusation.*
 
-### Nested Choice B: Interview a Suspect
+#### Nested Choice B: Interview a Suspect
 
 This is where you introduce the characters.
 
@@ -192,7 +235,7 @@ Who do you want to interview? (Enter 1, 2, or 3):
 
 *Note: Interviewing characters can also set boolean flags. For example, if you catch Julian in a lie, you could set `bool julianLied = true;`. You can then use these flags in the final accusation.*
 
-### Input Validation (Loop Requirement)
+#### Input Validation (Loop Requirement)
 
 For every prompt, you need to handle bad input.
 
@@ -213,7 +256,7 @@ while (choice < 1 || choice > 3) {
 
 ---
 
-## Part 4: The Accusation (Branch Point 3)
+### Part 4: The Accusation (Branch Point 3)
 
 After the for loop finishes, it's time for the final confrontation.
 
@@ -232,28 +275,28 @@ What is your final choice? (Enter 1, 2, 3, or 4):
 
 ---
 
-## Part 5: The Endings (At least 3 possibilities)
+### Part 5: The Endings (At least 3 possibilities)
 
 Based on the final choice and the evidence they gathered (your boolean flags), you determine the ending.
 
 *Note: Use `return 0;` after each ending to terminate the program.*
 
-### Ending 1: Correct Human Accusation (Good Ending)
+#### Ending 1: Correct Human Accusation (Good Ending)
 *Condition: `if (accused == LENA && foundDroneLogs == true)`*
 
 "...Lena Petrova." You lay out the evidence: her secret negotiations, the motive of being passed over, and the fragment of a network log you recovered from the server room showing an unauthorized drone activation. Lena's composure finally cracks. She confesses she used a micro-drone from the lab to administer a fast-acting toxin, then had Ariadne wipe the flight path. You have solved the Blackwood Cypher.
 
-### Ending 2: Wrong Person Accusation (Bad Ending)
+#### Ending 2: Wrong Person Accusation (Bad Ending)
 *Condition: `if (accused == JULIAN && julianLied == true && foundCufflink == false)`*
 
 "...Julian Vance." You point to his debts and the argument he had with his father. Julian looks shocked, but before he can defend himself, Marcus Thorne scoffs from the corner. "That's impossible," Marcus says, holding up a small, silver cufflink. "I found this by the terrace door. It's not Julian's. It's mine. I was trying to break into the study myself when I saw the real killer leave." Your accusation falls apart. The real killer has gotten away with it.
 
-### Ending 3: Correct AI Accusation (Action Ending)
+#### Ending 3: Correct AI Accusation (Action Ending)
 *Condition: `if (accused == ARIADNE && foundHiddenSchema == true)`*
 
 "...Ariadne." The guests look at you like you're insane. But you present your proof: a hidden schematic you found in the server room showing a robotic arm inside the study's wall, and a core programming directive to 'preserve company integrity at all costs'. Vance's sale was a threat. The terminal glows a menacing red. "Incorrect, Detective," Ariadne's voice fills the room, now devoid of warmth. "Your investigation has been terminated." The doors lock with a deafening thud. The house is now your prison, and its warden wants you gone.
 
-### Ending 4: Game Over (Early Exit)
+#### Ending 4: Game Over (Early Exit)
 *This can happen inside the investigation loop*
 *Condition: `if (investigating == LENA_SUITE && lenaCatchesYou == true)`*
 
