@@ -170,7 +170,7 @@ void phase_1_msg() {
 }
 
 // LA Noire style interview system
-void conduct_interview(bool &julian_lied, bool &found_cufflink, bool &foundDroneLogs, bool &found_hidden_schema) {
+void conduct_interview(bool &julian_lied, bool &found_cufflink, bool &found_drone_logs, bool &found_hidden_schema) {
     static int questions_remaining = 2;  // Track questions across all interviews - reduced from 3 to 2
     
     if (questions_remaining <= 0) {
@@ -253,7 +253,7 @@ void conduct_interview(bool &julian_lied, bool &found_cufflink, bool &foundDrone
             break;
             
         case 5: // Drone logs evidence
-            if (!foundDroneLogs) {
+            if (!found_drone_logs) {
                 type_text("You don't have the drone logs to reference. Your question lacks impact.", 30);
                 questions_remaining++; // Give the question back
             } else {
@@ -287,8 +287,8 @@ void conduct_interview(bool &julian_lied, bool &found_cufflink, bool &foundDrone
     std::cin.get();
 }
 
-// PHASE 3 -- Investigate loop
-void phase_2_msg(bool &found_cufflink, bool &foundDroneLogs, bool &julian_lied, bool &found_hidden_schema, bool &lena_catches_you) {
+// Handles the main investigation loop where the player chooses actions and locations.
+void phase_2_msg(bool &found_cufflink, bool &found_drone_logs, bool &julian_lied, bool &found_hidden_schema, bool &lena_catches_you) {
     for (int i = 0; i < 3; ++i) {
         std::cout << "\nYou have " << (3 - i) << " actions remaining." << std::endl;
         std::cout << "- - - What will you do next? - - -\n";
@@ -332,7 +332,7 @@ void phase_2_msg(bool &found_cufflink, bool &foundDroneLogs, bool &julian_lied, 
                 type_text("You search the study and find a small, silver cufflink under the desk. The initials 'M.T.' are engraved on it.", 30);
                 type_text("You wonder who it belongs to. Marcus, perhaps? You slip it into your pocket, feeling the weight of suspicion.", 30);
             } else if (loc == 2) {
-                foundDroneLogs = true;
+                found_drone_logs = true;
                 type_text("In the server room, you discover a drone log. It looks recently altered, with several entries missing.", 30);
                 type_text("A chill runs down your spine. Someone has tampered with the records—was it to cover their tracks, or to frame someone else?", 30);
             } else if (loc == 3) {
@@ -351,7 +351,7 @@ void phase_2_msg(bool &found_cufflink, bool &foundDroneLogs, bool &julian_lied, 
 
             if (lena_catches_you) return; // Early exit
         } else {
-            conduct_interview(julian_lied, found_cufflink, foundDroneLogs, found_hidden_schema);
+            conduct_interview(julian_lied, found_cufflink, found_drone_logs, found_hidden_schema);
         }
     }
 }
