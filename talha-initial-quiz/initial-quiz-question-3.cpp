@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <limits>
 using namespace std;
 
 double get_user_input(string msg) {
@@ -47,6 +48,9 @@ int main() {
         interest_rate = perc(25.00);
     } else if (installment_month > 48 && installment_month <= 60) {
         interest_rate = perc(30.00);
+    } else {
+        cout << "Error: Installment months greater than 60 are not supported." << endl;
+        return 1;
     }
     
     // Payable Amount = Vehicle Price – Down Payment 
