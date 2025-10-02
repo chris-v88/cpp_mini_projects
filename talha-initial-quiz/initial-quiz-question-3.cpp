@@ -36,7 +36,14 @@ int main() {
 
     double vehicle_price=get_user_input("Vehicle Price (Total cost of car) : ");
     double downpayment=get_user_input("Down Payment (First payment made while purchasing the car) : ");
-    installment_month=(int)get_user_input("Installment Months (Number of months for which loan is required) : ");
+    cout << "Installment Months (Number of months for which loan is required) : ");
+    cin >> installment_month;
+    while(cin.failed()) {
+        cout << "\nInvalid input. installment_month must be an interger.";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> installment_month;
+    }
 
     if (installment_month <= 12) {
         interest_rate = perc(10.00);
