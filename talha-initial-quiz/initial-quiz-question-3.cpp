@@ -34,12 +34,12 @@ int main() {
 
     cout << "Please fill out your form below:" << endl;
 
-    double vehicle_price=get_user_input("Vehicle Price (Total cost of car) : ");
-    double downpayment=get_user_input("Down Payment (First payment made while purchasing the car) : ");
+    double vehicle_price = get_user_input("Vehicle Price (Total cost of car) : ");
+    double downpayment = get_user_input("Down Payment (First payment made while purchasing the car) : ");
     cout << "Installment Months (Number of months for which loan is required) : ");
     cin >> installment_month;
-    while(cin.failed()) {
-        cout << "\nInvalid input. installment_month must be an interger.";
+    while(cin.fail()) {
+        cout << "\nInvalid input. installment_month must be an integer.";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> installment_month;
