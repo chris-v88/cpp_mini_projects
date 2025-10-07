@@ -8,16 +8,10 @@ using namespace std;
 
 int sum_to_n(int num){
     int result = 0;
-    if (num == 0) {
-        return 0;
-    } else if (num == 1) {
-        return 1;
-    } else {
-        for (int i = num; i >= 1; i--) {
-            result += i;
-        }
-        return result;
+    for (int i = num; i >= 1; i--) {
+        result += i;
     }
+    return result;
 }
 
 int main() {
