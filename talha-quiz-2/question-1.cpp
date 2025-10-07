@@ -30,7 +30,6 @@ int main() {
         cout << "Invalid input, try again: ";
         cin >> user_input;
     }
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     int fact_result = calc_factorial(user_input);
 
