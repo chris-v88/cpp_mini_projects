@@ -16,7 +16,7 @@ vector<int> getDivisors(int num)
             cout << num << " / " << i << " = " << (num / i) << endl;
             divisors.push_back(i);
         }
-    };
+    }
 
     cout << "The divisors of " << num << " are: ";
     for (int d : divisors)
@@ -32,9 +32,9 @@ int sumOfDivisors(vector<int> divisors)
 {
     int result = 0;
     cout << "\nSum: ";
-    for (int i = 0; i < divisors.size(); i++)
+    for (int i = 0; i < int(divisors.size()); i++)
     {
-        if (i != (divisors.size() - 1))
+        if (i != (int(divisors.size()) - 1))
             cout << divisors[i] << " + ";
         else
             cout << divisors[i] << " = ";
