@@ -32,7 +32,9 @@ int sumOfDivisors(vector<int> divisors)
 {
     int result = 0;
     cout << "\nSum: ";
-    for (int i = 0; i < int(divisors.size()); i++)
+
+    int n = int(divisors.size());
+    for (int i = 0; i < n; i++)
     {
         if (i != (int(divisors.size()) - 1))
             cout << divisors[i] << " + ";
@@ -59,6 +61,13 @@ int main()
 
     int num;
     cin >> num;
+    while (cin.fail() || num < 0)
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input, try again: ";
+        cin >> num;
+    }
 
     bool result = isPerfectNumber(num);
     if (result)
