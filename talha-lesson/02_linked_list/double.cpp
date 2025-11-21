@@ -108,7 +108,7 @@ void display()
 
 // /// HOMEWORK /// //
 // delete at any position
-void delete_at_position(int val, int pos)
+void delete_at_position(int pos)
 {
     if (head == NULL && tail == NULL)
     {
