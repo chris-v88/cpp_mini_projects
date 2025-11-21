@@ -77,13 +77,13 @@ void popFromfirst(Node *&head)
 void insertAtPosition(Node *&head, int val, string n, int a, int pos)
 {
     Node *newNode = createNode(val, n, a);
-    if (pos == 1)
+    if (head == NULL)
     {
-        newNode->next = head;
         head = newNode;
     }
-    else if (head == NULL)
+    else if (pos == 1)
     {
+        newNode->next = head;
         head = newNode;
     }
     else
@@ -102,6 +102,22 @@ void insertAtPosition(Node *&head, int val, string n, int a, int pos)
 // delete from any specific Location
 void deleteFromPosition(Node *&head, int pos)
 {
+    if (head == NULL)
+    {
+        cout << "List is empty";
+        return;
+    }
+    else if (pos == 1)
+    {
+        head = head->next;
+    }
+    else
+    {
+        Node *temp = head;
+        for (int i = 1; i < pos - 1; i++)
+        {
+        }
+    }
 }
 
 // delete node at a specific value
