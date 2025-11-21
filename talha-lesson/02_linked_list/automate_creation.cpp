@@ -10,26 +10,26 @@ struct Node
     Node *next;
 };
 
-Node *createNode(int val, string n, int a)
+Node *createNode(int id, string name, int age)
 {
     Node *newNode = NULL;
 
     newNode = new Node;
 
-    newNode->id = val;
-    newNode->name = n;
-    newNode->age = a;
+    newNode->id = id;
+    newNode->name = name;
+    newNode->age = age;
     newNode->next = NULL;
 
     return newNode;
 }
 
 // insert at start
-void insertAtStart(Node *&head, int val, string n, int a)
+void insertAtStart(Node *&head, int id, string name, int age)
 {
-    Node *newNode = createNode(val, n, a);
+    Node *newNode = createNode(id, name, age);
 
-    Node *temp = head;
+    // Node *temp = head;
     if (head == NULL)
     {
         head = newNode;
@@ -42,9 +42,9 @@ void insertAtStart(Node *&head, int val, string n, int a)
 }
 
 // insert at end
-void insertAtEnd(Node *&head, int val, string n, int a)
+void insertAtEnd(Node *&head, int id, string name, int age)
 {
-    Node *newNode = createNode(val, n, a);
+    Node *newNode = createNode(id, name, age);
     if (head == NULL)
     {
         head = newNode;
@@ -74,9 +74,9 @@ void popFromfirst(Node *&head)
 
 // /// HOMEWORK /// //
 // insert at any specific Location
-void insertAtPosition(Node *&head, int val, string n, int a, int pos)
+void insertAtPosition(Node *&head, int id, string name, int age, int pos)
 {
-    Node *newNode = createNode(val, n, a);
+    Node *newNode = createNode(id, name, age);
     if (head == NULL)
     {
         head = newNode;
@@ -96,6 +96,8 @@ void insertAtPosition(Node *&head, int val, string n, int a, int pos)
         Node *nextNode = temp->next;
         temp->next = newNode;
         newNode->next = nextNode;
+
+        cout << "Insert (" << id << " " << name << " " << age << ") at position " << pos << endl;
     }
 }
 
@@ -120,10 +122,12 @@ void deleteFromPosition(Node *&head, int pos)
         }
         Node *deleteNode = temp->next;
         temp->next = deleteNode->next;
+        cout << "Delete (" << deleteNode->id << " " << deleteNode->name << " " << deleteNode->age << ") from position " << pos << endl;
     }
 }
 
 // delete node at a specific value
+// void deleteFromValue(Node *head, )
 
 // /// MAIN FUNCTION /// //
 int main()
@@ -136,28 +140,50 @@ int main()
     insertAtStart(head, 2, "Rahul", 23);
     insertAtStart(head, 1, "Abdullah", 23);
 
-    insertAtEnd(head, 10, "Chris", 24);
-    insertAtEnd(head, 11, "Ali", 25);
+    insertAtEnd(head, 10, "Anusha", 24);
+    insertAtEnd(head, 11, "Abid", 25);
 
-    popFromfirst(head);
-    popFromfirst(head);
+    insertAtPosition(head, 99, "Zain", 99, 2);
+    insertAtPosition(head, 100, "Ayaan", 100, 5);
 
-    Node *temp = head;
-    while (temp != NULL)
+    cout << "Linked List Data:" << endl
+         << endl;
+
+    Node *inital_temp = head;
+    while (inital_temp != NULL)
     {
-
-        if (temp->name == "Talha")
+        if (inital_temp->name == "Talha")
         {
         }
-        cout << temp->id << endl;
-        cout << temp->name << endl;
-        cout << temp->age << endl;
+        cout << inital_temp->id << endl;
+        cout << inital_temp->name << endl;
+        cout << inital_temp->age << endl;
 
-        temp = temp->next;
+        inital_temp = inital_temp->next;
 
         cout << endl
-             << endl
-             << endl
+             << endl;
+    }
+
+    // popFromfirst(head);
+    // popFromfirst(head);
+
+    deleteFromPosition(head, 3);
+    deleteFromPosition(head, 6);
+
+    cout << "------------------------" << endl;
+    cout << "Linked List Data After Deletions:" << endl << endl;
+
+    Node *after_temp = head;
+    while (after_temp != NULL)
+    {
+        cout << after_temp->id << endl;
+        cout << after_temp->name << endl;
+        cout << after_temp->age << endl;
+
+        after_temp = after_temp->next;
+
+        cout << endl
              << endl;
     }
 }
