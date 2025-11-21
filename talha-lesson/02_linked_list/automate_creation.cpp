@@ -127,7 +127,24 @@ void deleteFromPosition(Node *&head, int pos)
 }
 
 // delete node at a specific value
-// void deleteFromValue(Node *head, )
+void deleteFromId(Node *head, int id)
+{
+    if (head == NULL)
+    {
+        cout << "List is empty";
+    }
+    else
+    {
+        Node *temp = head;
+        while (temp->next->id != id)
+        {
+            temp = temp->next;
+        }
+        Node *deleteNode = temp->next;
+        temp->next = deleteNode->next;
+        cout << "Delete (" << deleteNode->id << " " << deleteNode->name << " " << deleteNode->age << ") from id " << id << endl;
+    }
+}
 
 // /// MAIN FUNCTION /// //
 int main()
@@ -165,14 +182,19 @@ int main()
              << endl;
     }
 
+    cout << "------------------------" << endl;
+
     // popFromfirst(head);
     // popFromfirst(head);
 
     deleteFromPosition(head, 3);
     deleteFromPosition(head, 6);
 
+    deleteFromId(head, 99);
+
     cout << "------------------------" << endl;
-    cout << "Linked List Data After Deletions:" << endl << endl;
+    cout << "Linked List Data After Deletions:" << endl
+         << endl;
 
     Node *after_temp = head;
     while (after_temp != NULL)
