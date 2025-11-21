@@ -10,14 +10,8 @@ struct Node
     Node *next;
 };
 
-// insert at start
-// insert at end
-// pop from start
-// pop from end
-
 Node *createNode(int val, string n, int a)
 {
-
     Node *newNode = NULL;
 
     newNode = new Node;
@@ -30,6 +24,7 @@ Node *createNode(int val, string n, int a)
     return newNode;
 }
 
+// insert at start
 void insertAtStart(Node *&head, int val, string n, int a)
 {
     Node *newNode = createNode(val, n, a);
@@ -46,6 +41,7 @@ void insertAtStart(Node *&head, int val, string n, int a)
     }
 }
 
+// insert at end
 void insertAtEnd(Node *&head, int val, string n, int a)
 {
     Node *newNode = createNode(val, n, a);
@@ -62,6 +58,7 @@ void insertAtEnd(Node *&head, int val, string n, int a)
     temp->next = newNode;
 }
 
+// pop from start
 void popFromfirst(Node *&head)
 {
     if (head == NULL)
@@ -75,6 +72,41 @@ void popFromfirst(Node *&head)
     head = head->next;
 }
 
+// /// HOMEWORK /// //
+// insert at any specific Location
+void insertAtPosition(Node *&head, int val, string n, int a, int pos)
+{
+    Node *newNode = createNode(val, n, a);
+    if (pos == 1)
+    {
+        newNode->next = head;
+        head = newNode;
+    }
+    else if (head == NULL)
+    {
+        head = newNode;
+    }
+    else
+    {
+        Node *temp = head;
+        for (int i = 1; i < pos - 1; i++)
+        {
+            temp = temp->next;
+        }
+        Node *nextNode = temp->next;
+        temp->next = newNode;
+        newNode->next = nextNode;
+    }
+}
+
+// delete from any specific Location
+void deleteFromPosition(Node *&head, int pos)
+{
+}
+
+// delete node at a specific value
+
+// /// MAIN FUNCTION /// //
 int main()
 {
     Node *head = NULL;
@@ -110,8 +142,3 @@ int main()
              << endl;
     }
 }
-
-// HOMEWORK
-// delete from any specific Location
-// insert at any specific Location
-// delete node at a specific value
