@@ -123,12 +123,15 @@ void delete_at_position(int val, int pos)
     {
         // TODO: got stucked on this
         Node *curr = head;
-        for (int i = 1; i < pos - 1; i++)
+        for (int i = 1; i < pos; i++)
         {
             if (curr != NULL || curr->next != NULL)
             {
                 curr = curr->next;
             }
+            Node *deleteNode = curr->next;
+            curr->next = deleteNode->next;
+            deleteNode->next->prev = curr;
         }
     }
 }
