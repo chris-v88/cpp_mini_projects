@@ -92,6 +92,9 @@ void insert_at_position(int v, int pos)
         }
         p->next = temp;
         temp->prev = p;
+
+        temp->next = c;
+        c->prev = temp;
     }
 }
 
