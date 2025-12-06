@@ -65,20 +65,23 @@ void delete_by_roll(int roll_number)
         return;
     }
 
-    // if student is in middle 
+    // if student is in middle
     Student *prev = head;
     Student *current = head->next;
 
-    while (current != NULL){
-        
+    while (current != NULL)
+    {
+
         // if found roll number
-        if (current->roll_number == roll_number) {
+        if (current->roll_number == roll_number)
+        {
             prev->next = current->next;
 
-            if (current == tail) {
+            if (current == tail)
+            {
                 tail = prev;
             }
-            
+
             student_count--;
             cout << "DELETE student (" << current->roll_number << ", " << current->name << ", " << current->marks << ")" << endl;
             return;
@@ -88,7 +91,26 @@ void delete_by_roll(int roll_number)
         prev = current;
         current = current->next;
     }
-
-    
 }
 
+// DISPLAY
+void display_all()
+{
+    if (head == NULL)
+    {
+        cout << "List is empty" << endl;
+    }
+    
+    cout << "\n========== STUDENT LIST ==========" << endl;
+    cout << "Total # Students: " << student_count << endl;
+    cout << "----------------------------------\n" << endl;
+
+    Student *temp = head;
+    while (temp != NULL) {
+        cout << "Roll #: " << temp->roll_number << endl;
+        cout << "  Name: " << temp->name << endl;
+        cout << "  Marks: " << temp->marks << endl << endl;
+        temp = temp->next;
+    }
+    cout << endl;
+}
