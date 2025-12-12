@@ -38,6 +38,8 @@ void add_student(int roll_number, string name, float marks)
     }
 
     student_count++;
+
+    cout << "ADD student (" << newStudent->roll_number << ", " << newStudent->name << ", " << newStudent->marks << ")";
 };
 
 // DELETE by roll number
@@ -91,7 +93,7 @@ void delete_by_roll(int roll_number)
         prev = current;
         current = current->next;
     }
-}
+};
 
 // DISPLAY
 void display_all()
@@ -100,17 +102,108 @@ void display_all()
     {
         cout << "List is empty" << endl;
     }
-    
+
     cout << "\n========== STUDENT LIST ==========" << endl;
     cout << "Total # Students: " << student_count << endl;
-    cout << "----------------------------------\n" << endl;
+    cout << "----------------------------------\n"
+         << endl;
 
     Student *temp = head;
-    while (temp != NULL) {
+    while (temp != NULL)
+    {
         cout << "Roll #: " << temp->roll_number << endl;
         cout << "  Name: " << temp->name << endl;
-        cout << "  Marks: " << temp->marks << endl << endl;
+        cout << "  Marks: " << temp->marks << endl
+             << endl;
         temp = temp->next;
     }
     cout << endl;
+};
+
+// search student by roll number
+Student *search_by_roll(int roll_number)
+{
+    if (head == NULL)
+    {
+        cout << "List is empty" << endl;
+    }
+
+    Student *temp = head;
+    while (temp != NULL)
+    {
+        if (temp->roll_number == roll_number)
+        {
+            cout << "Found Student with Roll #: " << temp->roll_number << endl;
+            cout << "  Name: " << temp->name << endl;
+            cout << "  Mark: " << temp->marks << endl
+                 << endl;
+
+            return temp;
+        }
+        temp = temp->next;
+    }
+
+    cout << "Cannot find Student with Roll # " << roll_number << endl;
+    return NULL;
+}
+
+// update student detail
+void update_student_name(int roll_number, string new_name)
+{
+    Student *temp = search_by_roll(roll_number);
+    // cout << temp->roll_number;
+    if (temp == NULL)
+    {
+        return;
+    }
+    else
+    {
+        temp->name = new_name;
+    }
+}
+
+// update student mark
+void update_student_mark(int roll_number, float new_mark)
+{
+    Student *temp = search_by_roll(roll_number);
+    if (temp == NULL) {
+        return;
+    } else {
+        temp->marks = new_mark;
+    }
+}
+
+int main()
+{
+    // add student
+    add_student(101, "Talha", 92.5);
+    add_student(102, "Chris", 78.5);
+    add_student(103, "Ali", 85.5);
+    add_student(104, "Rahul", 88.0);
+    add_student(105, "Sandeep", 95.5);
+    add_student(106, "Anusha", 82.0);
+
+    // display
+    display_all();
+    cout << "----------------------------------\n"
+         << endl;
+
+    // delete
+    // delete_by_roll(101); // head
+    // delete_by_roll(103); // middle
+    // delete_by_roll(106); // tail
+    // display_all();
+
+    // search by roll
+    // search_by_roll(103);
+
+    // update student name
+    update_student_name(102, "Vidya");
+    // display_all();
+    
+    // update student mark
+    update_student_mark(105, 90.0);
+    display_all();
+
+    return 0;
 }
