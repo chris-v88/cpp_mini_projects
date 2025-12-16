@@ -307,11 +307,9 @@ void perform_add_student_operation()
         add_student(roll_number, student_name, marks);
         cout << endl << endl;
         roll_number++;
+        student_count++;
     }
 }
-
-
-
 
 int main()
 {
@@ -354,27 +352,76 @@ int main()
     {
         perform_add_student_operation();
     }
+    else if (user_input == "DELETE" || user_input == "delete")
+    {
+        int roll_number;
+        cout << "Enter Roll Number to DELETE: ";
+        cin >> roll_number;
+        delete_by_roll(roll_number);
+    }
+    else if (user_input == "SEARCH" || user_input == "search")
+    {
+        int roll_number;
+        cout << "Enter Roll Number to SEARCH: ";
+        cin >> roll_number;
+        search_by_roll(roll_number);
+    }
+    else if (user_input == "UPDATE_NAME" || user_input == "update_name")
+    {
+        int roll_number;
+        string new_name;
+        cout << "Enter Roll Number to UPDATE NAME: ";
+        cin >> roll_number;
+        cout << "Enter New Name: ";
+        cin >> new_name;
+        update_student_name(roll_number, new_name);
+    }
+    else if (user_input == "UPDATE_MARK" || user_input == "update_mark")
+    {
+        int roll_number;
+        double new_mark;
+        cout << "Enter Roll Number to UPDATE MARK: ";
+        cin >> roll_number;
+        cout << "Enter New Mark: ";
+        cin >> new_mark;
+        update_student_mark(roll_number, new_mark);
+    }
+    else if (user_input == "EXIT" || user_input == "exit")
+    {
+        cout << "Exiting Student Management System" << endl;
+    }
+    else
+    {
+        cout << "Invalid Option. Exiting Student Management System" << endl;
+    }
 
-    display_all();
+    if (student_count == 0)
+    {
+        cout << "No students to display report." << endl;
+        return 0;
+    }
+    else {
+        display_all();
 
-    cout << "============= REPORT =============" << endl;
-    cout << "Total # Students: " << student_count << endl;
+        cout << "============= REPORT =============" << endl;
+        cout << "Total # Students: " << student_count << endl;
 
-    cout << "Average: " << average() << endl << endl;
+        cout << "Average: " << average() << endl << endl;
 
-    Student* top_student = highest_marks();
-    cout << "Student with highest marks: " << top_student->name << " -- marks: " << top_student->marks << endl;
+        Student* top_student = highest_marks();
+        cout << "Student with highest marks: " << top_student->name << " -- marks: " << top_student->marks << endl;
 
-    Student* lowest_student = lowest_marks();
-    cout << "Student with lowest marks: " << lowest_student->name << " -- marks: " << lowest_student->marks << endl << endl;
+        Student* lowest_student = lowest_marks();
+        cout << "Student with lowest marks: " << lowest_student->name << " -- marks: " << lowest_student->marks << endl << endl;
 
-    int number_above_50 = count_above_50();
-    cout << "Number of students above 50%: " << number_above_50 << endl;
+        int number_above_50 = count_above_50();
+        cout << "Number of students above 50%: " << number_above_50 << endl;
 
-    int number_below_50 = count_below_50();
-    cout << "Number of students below 50%: " << number_below_50 << endl;
+        int number_below_50 = count_below_50();
+        cout << "Number of students below 50%: " << number_below_50 << endl;
 
-    cout << "----------------------------------\n";
+        cout << "----------------------------------\n";
 
-    return 0;
+        return 0;
+    }
 }
