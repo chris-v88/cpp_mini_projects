@@ -196,8 +196,86 @@ double average()
 }
 
 // Highest marks
+Student* highest_marks()
+{
+    if(head == NULL)
+    {
+        cout << "List is empty" << endl;
+    }
+    Student* temp = head;
+    Student* highest = head;
+    while (temp != NULL)
+    {
+        if (temp->marks > highest->marks)
+        {
+            highest = temp;
+        }
+        temp = temp->next;
+    }
+    return highest;
+}
+
 // Lowest marks
+Student* lowest_marks()
+{
+    if(head == NULL)
+    {
+        cout << "List is empty" << endl;
+    }
+    Student* temp = head;
+    Student* lowest = head;
+    while (temp != NULL)
+    {
+        if (temp->marks < lowest->marks)
+        {
+            lowest = temp;
+        }
+        temp = temp->next;
+    }
+    return lowest;
+}
+
 // Count of student above/below 50%
+int count_above_50()
+{
+    if (head == NULL)
+    {
+        cout << "List is empty" << endl;
+    }
+
+    Student* temp = head;
+    int count = 0;
+    while (temp != NULL) {
+        if (temp->marks > 50.0)
+        {
+            count++;
+        }
+        temp = temp->next;
+    }
+
+    return count;
+}
+
+int count_below_50()
+{
+    if (head == NULL)
+    {
+        cout << "List is empty" << endl;
+    }
+
+    Student* temp = head;
+    int count = 0;
+    while (temp != NULL) {
+        if (temp->marks < 50.0)
+        {
+            count++;
+        }
+        temp = temp->next;
+    }
+
+    return count;
+}
+
 
 int main()
 {
@@ -205,14 +283,11 @@ int main()
     add_student(101, "Talha", 92.5);
     add_student(102, "Chris", 78.5);
     add_student(103, "Ali", 85.5);
-    add_student(104, "Rahul", 88.0);
-    add_student(105, "Sandeep", 95.5);
+    add_student(104, "Rahul", 50.0);
+    add_student(105, "Sandeep", 49.5);
     add_student(106, "Anusha", 82.0);
-
-    // display
-    display_all();
-    cout << "----------------------------------\n"
-        << endl;
+    add_student(107, "Veda", 95.5);
+    add_student(108, "Vivek", 41.8);
 
     // delete
     // delete_by_roll(101); // head
@@ -224,14 +299,31 @@ int main()
     // search_by_roll(103);
 
     // update student name
-    update_student_name(102, "Vidya");
+    // update_student_name(102, "Vidya");
     // display_all();
 
     // update student mark`
-    update_student_mark(105, 90.0);
-    display_all();
+    // update_student_mark(105, 90.0);
+    // display_all();
 
-    cout << "Average: " << average() << endl;;
+    cout << "\n============= REPORT =============" << endl;
+    cout << "Total # Students: " << student_count << endl;
+    
+    cout << "Average: " << average() << endl << endl;
+
+    Student* top_student = highest_marks();
+    cout << "Student with highest marks: " << top_student->name << " -- marks: " << top_student->marks << endl;
+
+    Student* lowest_student = lowest_marks();
+    cout << "Student with lowest marks: " << lowest_student->name << " -- marks: " << lowest_student->marks << endl << endl;
+
+    int number_above_50 = count_above_50();
+    cout << "Number of students above 50%: " << number_above_50 << endl;
+
+    int number_below_50 = count_below_50();
+    cout << "Number of students below 50%: " << number_below_50 << endl;
+
+    cout << "----------------------------------\n";
 
     return 0;
 }
