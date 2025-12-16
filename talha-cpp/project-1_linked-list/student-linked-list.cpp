@@ -103,10 +103,9 @@ void display_all()
         cout << "List is empty" << endl;
     }
 
-    cout << "\n========== STUDENT LIST ==========" << endl;
+    cout << endl << "========== STUDENT LIST ==========" << endl;
     cout << "Total # Students: " << student_count << endl;
-    cout << "----------------------------------\n"
-        << endl;
+    cout << "----------------------------------" << endl << endl;
 
     Student* temp = head;
     while (temp != NULL)
@@ -117,7 +116,6 @@ void display_all()
             << endl;
         temp = temp->next;
     }
-    cout << endl;
 };
 
 // search student by roll number
@@ -198,7 +196,7 @@ double average()
 // Highest marks
 Student* highest_marks()
 {
-    if(head == NULL)
+    if (head == NULL)
     {
         cout << "List is empty" << endl;
     }
@@ -218,7 +216,7 @@ Student* highest_marks()
 // Lowest marks
 Student* lowest_marks()
 {
-    if(head == NULL)
+    if (head == NULL)
     {
         cout << "List is empty" << endl;
     }
@@ -276,18 +274,56 @@ int count_below_50()
     return count;
 }
 
+// Program to get student details from user and perform operations
+void perform_add_student_operation()
+{
+    string student_name = "";
+    cout << endl << "------------- ADD STUDENT --------------";
+    cout << "\nType 'exit' for 'Student Name' to stop adding students" << endl;
+    int roll_number = 0;
+    if (head == NULL)
+    {
+        cout << "Currently, there is no students in the system." << endl;
+        roll_number = 0;
+    }
+    else
+    {
+        roll_number = tail->roll_number + 1;
+    }
+
+    while (student_name != "exit" || student_name != "EXIT")
+    {
+        double marks;
+        cout << endl << "Enter Student Info" << endl;
+        cout << "  Student Name: ";
+        cin >> student_name;
+        if (student_name == "exit" || student_name == "EXIT")
+        {
+            break;
+        }
+
+        cout << "  Marks: ";
+        cin >> marks;
+        add_student(roll_number, student_name, marks);
+        cout << endl << endl;
+        roll_number++;
+    }
+}
+
+
+
 
 int main()
 {
     // add student
-    add_student(101, "Talha", 92.5);
-    add_student(102, "Chris", 78.5);
-    add_student(103, "Ali", 85.5);
-    add_student(104, "Rahul", 50.0);
-    add_student(105, "Sandeep", 49.5);
-    add_student(106, "Anusha", 82.0);
-    add_student(107, "Veda", 95.5);
-    add_student(108, "Vivek", 41.8);
+    // add_student(101, "Talha", 92.5);
+    // add_student(102, "Chris", 78.5);
+    // add_student(103, "Ali", 85.5);
+    // add_student(104, "Rahul", 50.0);
+    // add_student(105, "Sandeep", 49.5);
+    // add_student(106, "Anusha", 82.0);
+    // add_student(107, "Veda", 95.5);
+    // add_student(108, "Vivek", 41.8);
 
     // delete
     // delete_by_roll(101); // head
@@ -306,9 +342,24 @@ int main()
     // update_student_mark(105, 90.0);
     // display_all();
 
-    cout << "\n============= REPORT =============" << endl;
+    cout << "========== STUDENT MANAGEMENT SYSTEM ==========" << endl;
+    cout << "What would you like to do?" << endl;
+    string user_input = "";
+    cout << "Options: ADD, DELETE, SEARCH, UPDATE_NAME, UPDATE_MARK" << endl;
+
+    cout << "Enter your choice: ";
+    cin >> user_input;
+
+    if (user_input == "ADD" || user_input == "add")
+    {
+        perform_add_student_operation();
+    }
+
+    display_all();
+
+    cout << "============= REPORT =============" << endl;
     cout << "Total # Students: " << student_count << endl;
-    
+
     cout << "Average: " << average() << endl << endl;
 
     Student* top_student = highest_marks();
