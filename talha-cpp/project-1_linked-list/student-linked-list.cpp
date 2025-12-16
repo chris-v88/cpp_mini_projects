@@ -7,19 +7,19 @@ struct Student
 {
     int roll_number;
     string name;
-    float marks;
+    double marks;
 
-    Student *next;
+    Student* next;
 };
 
-Student *head = NULL;
-Student *tail = NULL;
+Student* head = NULL;
+Student* tail = NULL;
 int student_count = 0;
 
 // ADD
-void add_student(int roll_number, string name, float marks)
+void add_student(int roll_number, string name, double marks)
 {
-    Student *newStudent = new Student;
+    Student* newStudent = new Student;
 
     newStudent->roll_number = roll_number;
     newStudent->name = name;
@@ -54,7 +54,7 @@ void delete_by_roll(int roll_number)
     // if student is first in list
     if (head->roll_number == roll_number)
     {
-        Student *temp = head;
+        Student* temp = head;
 
         head = head->next;
         if (head == NULL)
@@ -68,8 +68,8 @@ void delete_by_roll(int roll_number)
     }
 
     // if student is in middle
-    Student *prev = head;
-    Student *current = head->next;
+    Student* prev = head;
+    Student* current = head->next;
 
     while (current != NULL)
     {
@@ -106,29 +106,29 @@ void display_all()
     cout << "\n========== STUDENT LIST ==========" << endl;
     cout << "Total # Students: " << student_count << endl;
     cout << "----------------------------------\n"
-         << endl;
+        << endl;
 
-    Student *temp = head;
+    Student* temp = head;
     while (temp != NULL)
     {
         cout << "Roll #: " << temp->roll_number << endl;
         cout << "  Name: " << temp->name << endl;
         cout << "  Marks: " << temp->marks << endl
-             << endl;
+            << endl;
         temp = temp->next;
     }
     cout << endl;
 };
 
 // search student by roll number
-Student *search_by_roll(int roll_number)
+Student* search_by_roll(int roll_number)
 {
     if (head == NULL)
     {
         cout << "List is empty" << endl;
     }
 
-    Student *temp = head;
+    Student* temp = head;
     while (temp != NULL)
     {
         if (temp->roll_number == roll_number)
@@ -136,7 +136,7 @@ Student *search_by_roll(int roll_number)
             cout << "Found Student with Roll #: " << temp->roll_number << endl;
             cout << "  Name: " << temp->name << endl;
             cout << "  Mark: " << temp->marks << endl
-                 << endl;
+                << endl;
 
             return temp;
         }
@@ -150,7 +150,7 @@ Student *search_by_roll(int roll_number)
 // update student detail
 void update_student_name(int roll_number, string new_name)
 {
-    Student *temp = search_by_roll(roll_number);
+    Student* temp = search_by_roll(roll_number);
     // cout << temp->roll_number;
     if (temp == NULL)
     {
@@ -163,15 +163,41 @@ void update_student_name(int roll_number, string new_name)
 }
 
 // update student mark
-void update_student_mark(int roll_number, float new_mark)
+void update_student_mark(int roll_number, double new_mark)
 {
-    Student *temp = search_by_roll(roll_number);
+    Student* temp = search_by_roll(roll_number);
     if (temp == NULL) {
         return;
-    } else {
+    }
+    else {
         temp->marks = new_mark;
     }
 }
+
+// calculate Class Statistics of 
+// Average marks
+double average()
+{
+    if (head == NULL)
+    {
+        cout << "LIst is empty" << endl;
+    }
+
+    Student* temp = head;
+    double total = 0;
+    while (temp != NULL)
+    {
+        total += temp->marks;
+        temp = temp->next;
+    }
+
+    double average = total / student_count;
+    return average;
+}
+
+// Highest marks
+// Lowest marks
+// Count of student above/below 50%
 
 int main()
 {
@@ -186,7 +212,7 @@ int main()
     // display
     display_all();
     cout << "----------------------------------\n"
-         << endl;
+        << endl;
 
     // delete
     // delete_by_roll(101); // head
@@ -200,10 +226,12 @@ int main()
     // update student name
     update_student_name(102, "Vidya");
     // display_all();
-    
-    // update student mark
+
+    // update student mark`
     update_student_mark(105, 90.0);
     display_all();
+
+    cout << "Average: " << average() << endl;;
 
     return 0;
 }
