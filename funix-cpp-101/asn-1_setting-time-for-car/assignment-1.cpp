@@ -1,6 +1,31 @@
 #include <iostream>
 using namespace std;
 
+// Convert month to string
+string get_month_name(int month)
+{
+  switch (month)
+  {
+    case 1: return "Jan";
+    case 2: return "Feb";
+    case 3: return "Mar";
+    case 4: return "Apr";
+    case 5: return "May";
+    case 6: return "Jun";
+    case 7: return "Jul";
+    case 8: return "Aug";
+    case 9: return "Sep";
+    case 10: return "Oct";
+    case 11: return "Nov";
+    case 12: return "Dec";
+    default: return "";
+  }
+}
+
+// 
+
+
+// Validate functions for user inputs
 int validate_year(int year)
 {
   while (year <= 0 || year > 2025)
