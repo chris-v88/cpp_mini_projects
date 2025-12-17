@@ -67,7 +67,7 @@ Output the information of the day, month, and system time in the following forma
 
 ### **Question 3: Setting Time in 12-hour/24-hour Format**
 
-a) Ask the user to choose a time format in 12-hour or 24-hour. The user inputs 2 for 12-hour format, 24 for 24-hour format.
+a) Ask the user to choose a time format in 12-hour or 24-hour. The user inputs 12 for 12-hour format, 24 for 24-hour format.
 
 b) Output the time information in the correct format.
 

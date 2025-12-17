@@ -51,7 +51,7 @@ int validate_year(int year)
 {
   while (year <= 0 || year > 2025)
   {
-    cout << "Invalid year. Please enter again: ";
+    cout << " ! ERROR ! Invalid year. Please enter again: ";
     cin >> year;
   }
   return year;
@@ -61,7 +61,7 @@ int validate_month(int month)
 {
   while (month < 1 || month > 12)
   {
-    cout << "Invalid month. Please enter again: ";
+    cout << " ! ERROR ! Invalid month. Please enter again: ";
     cin >> month;
   }
   return month;
@@ -70,9 +70,10 @@ int validate_month(int month)
 int validate_day(int day, int month, int year)
 {
   int max_days = get_days_in_mont(month, year);
+  cout << "Max days is " << max_days << endl;
   while (day < 1 || day > max_days)
   {
-    cout << "Invalid day. Please enter again: ";
+    cout << " ! ERROR ! Invalid day. Please enter again: ";
     cin >> day;
   }
   return day;
@@ -82,7 +83,7 @@ int validate_hour(int hour)
 {
   while (hour < 0 || hour > 23)
   {
-    cout << "Invalid hour. Please enter again: ";
+    cout << " ! ERROR ! Invalid hour. Please enter again: ";
     cin >> hour;
   }
   return hour;
@@ -92,12 +93,23 @@ int validate_minute(int minute)
 {
   while (minute < 0 || minute > 59)
   {
-    cout << "Invalid minute. Please enter again: ";
+    cout << " ! ERROR ! Invalid minute. Please enter again: " << endl;
     cin >> minute;
   }
   return minute;
 }
 
+int validate_time_format(int user_format)
+{
+  while (user_format != 12 || user_format != 24)
+  {
+    cout << " ! ERROR ! Invalid minute. Please enter again: " << endl;
+    cin >> user_format;
+  }
+  return user_format;
+}
+
+// display
 void display_date_format(int hr, int min, int dd, int mm, int yy)
 {
   string month = get_month_name(mm);
@@ -107,8 +119,8 @@ void display_date_format(int hr, int min, int dd, int mm, int yy)
 int main()
 {
   cout << "========================================" << endl;
-  cout << "Program to set time for car" << endl;
-  cout << "========================================" << endl;
+  cout << "SET TIME FOR YOUR CAR" << endl;
+  cout << "---------------------------------------" << endl;
   cout << "Enter following information" << endl;
 
   // init data
@@ -124,7 +136,7 @@ int main()
 
   cout << "   Day: ";
   cin >> day;
-  day = validate_day(month, day, year);
+  day = validate_day(day, month, year);
 
   cout << "   Hour: ";
   cin >> hour;
@@ -134,7 +146,15 @@ int main()
   cin >> minute;
   minute = validate_minute(minute);
 
+  cout << "---------------------------------------" << endl;
   display_date_format(hour, minute, day, month, year);
+  cout << "---------------------------------------" << endl;
+
+  cout << "Choose a time format" << endl;
+  cout << "Enter '12' for 12-hour, '24' for 24-hour format: ";
+  int time_format;
+  cin >> time_format;
+  time_format = validate_time_format(time_format);
 
   return 0;
 };
