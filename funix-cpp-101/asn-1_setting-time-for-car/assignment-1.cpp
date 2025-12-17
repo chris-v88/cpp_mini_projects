@@ -51,7 +51,7 @@ int validate_year(int year)
 {
   while (year <= 0 || year > 2025)
   {
-    cout << " ! ERROR ! Invalid year. Please enter again: ";
+    cout << " ! ERROR ! Invalid year. Please enter again: " << endl;
     cin >> year;
   }
   return year;
@@ -61,7 +61,7 @@ int validate_month(int month)
 {
   while (month < 1 || month > 12)
   {
-    cout << " ! ERROR ! Invalid month. Please enter again: ";
+    cout << " ! ERROR ! Invalid month. Please enter again: " << endl;
     cin >> month;
   }
   return month;
@@ -73,7 +73,7 @@ int validate_day(int day, int month, int year)
   cout << "Max days is " << max_days << endl;
   while (day < 1 || day > max_days)
   {
-    cout << " ! ERROR ! Invalid day. Please enter again: ";
+    cout << " ! ERROR ! Invalid day. Please enter again: " << endl;
     cin >> day;
   }
   return day;
@@ -83,7 +83,7 @@ int validate_hour(int hour)
 {
   while (hour < 0 || hour > 23)
   {
-    cout << " ! ERROR ! Invalid hour. Please enter again: ";
+    cout << " ! ERROR ! Invalid hour. Please enter again: " << endl;
     cin >> hour;
   }
   return hour;
@@ -101,9 +101,9 @@ int validate_minute(int minute)
 
 int validate_time_format(int user_format)
 {
-  while (user_format != 12 || user_format != 24)
+  while (user_format != 12 && user_format != 24)
   {
-    cout << " ! ERROR ! Invalid minute. Please enter again: " << endl;
+    cout << " ! ERROR ! Invalid input. Please enter again: " << endl;
     cin >> user_format;
   }
   return user_format;
@@ -116,7 +116,7 @@ void display_date_24format(int hr, int min, int dd, int mm, int yy)
   cout << hr << "h:" << min << "m, " << dd << ", " << month << ", " << yy << endl;
 }
 
-// display in 24-hour format
+// display in 12-hour format
 void display_date_12format(int hr, int min, int dd, int mm, int yy)
 {
   string month = get_month_name(mm);
@@ -132,6 +132,8 @@ void display_date_12format(int hr, int min, int dd, int mm, int yy)
   }
   cout << hour << "h:" << min << "m " << meridiem << ", " << dd << ", " << month << ", " << yy << endl;
 }
+
+// Apply timezone 
 
 int main()
 {
@@ -172,6 +174,14 @@ int main()
   int time_format;
   cin >> time_format;
   time_format = validate_time_format(time_format);
+  if (time_format == 12)
+  {
+    display_date_12format(hour, minute, day, month, year);
+  }
+  else
+  {
+    display_date_24format(hour, minute, day, month, year);
+  }
 
   return 0;
 };
