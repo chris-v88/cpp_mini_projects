@@ -1,6 +1,14 @@
 #include <iostream>
 using namespace std;
 
+// check if it's leap year based on 
+// A year is a leap year if it is divisible by 400
+// OR divisible by 4 but not by 100
+bool is_leap_year(int year)
+{
+  return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
+}
+
 // Convert month to string
 string get_month_name(int month)
 {
