@@ -109,11 +109,28 @@ int validate_time_format(int user_format)
   return user_format;
 }
 
-// display
-void display_date_format(int hr, int min, int dd, int mm, int yy)
+// display in 24-hour format
+void display_date_24format(int hr, int min, int dd, int mm, int yy)
 {
   string month = get_month_name(mm);
   cout << hr << "h:" << min << "m, " << dd << ", " << month << ", " << yy << endl;
+}
+
+// display in 24-hour format
+void display_date_12format(int hr, int min, int dd, int mm, int yy)
+{
+  string month = get_month_name(mm);
+  string meridiem = (hr >= 12) ? "PM" : "AM";
+  int hour = hr;
+  if (hr == 0)
+  {
+    hour = 12;
+  }
+  if (hr > 12)
+  {
+    hour = hr - 12;
+  }
+  cout << hour << "h:" << min << "m " << meridiem << ", " << dd << ", " << month << ", " << yy << endl;
 }
 
 int main()
@@ -147,7 +164,7 @@ int main()
   minute = validate_minute(minute);
 
   cout << "---------------------------------------" << endl;
-  display_date_format(hour, minute, day, month, year);
+  display_date_24format(hour, minute, day, month, year);
   cout << "---------------------------------------" << endl;
 
   cout << "Choose a time format" << endl;
