@@ -8,12 +8,15 @@ using namespace std;
 - Lặp lại phép tính sẽ ra được các bảng nhận từ 1 tới 9
 */
 
-int main() {
+int main() 
+{
     cout << "----- MULTIPLICATION TABLE -----" << endl;
     int n = 10;
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 10; i++) 
+    {
         cout << "----- MULTIPLY BY " << i << " ------" << endl;
-        for (int j = 0; j < n; j++) {
+        for (int j = 0; j < n; j++) 
+        {
             cout << i << " * " << j << " = " << i * j << endl;
         }
         cout << "---------------------------" << endl;
