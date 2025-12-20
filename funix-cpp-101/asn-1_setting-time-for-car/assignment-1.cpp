@@ -31,7 +31,7 @@ string get_month_name(int month)
 }
 
 // Get # of days in a month
-int get_days_in_mont(int month, int year)
+int get_days_in_month(int month, int year)
 {
   if (month == 2)
   {
@@ -69,7 +69,7 @@ int validate_month(int month)
 
 int validate_day(int day, int month, int year)
 {
-  int max_days = get_days_in_mont(month, year);
+  int max_days = get_days_in_month(month, year);
   cout << "Max days is " << max_days << endl;
   while (day < 1 || day > max_days)
   {
@@ -109,14 +109,24 @@ int validate_time_format(int user_format)
   return user_format;
 }
 
-// display in 24-hour format
+int validate_time_zone_selection(int timezone)
+{
+  while (timezone < -12 || timezone > 12)
+  {
+    cout << endl << "! ERROR ! Invalid input. Please try again: ";
+    cin >> timezone;
+  }
+  return timezone;
+}
+
+// Display in 24-hour format
 void display_date_24format(int hr, int min, int dd, int mm, int yy)
 {
   string month = get_month_name(mm);
-  cout << hr << "h:" << min << "m, " << dd << ", " << month << ", " << yy << endl;
+  cout << hr << "h:" << min << "m, " << dd << " " << month << ", " << yy << endl;
 }
 
-// display in 12-hour format
+// Display in 12-hour format
 void display_date_12format(int hr, int min, int dd, int mm, int yy)
 {
   string month = get_month_name(mm);
@@ -130,10 +140,59 @@ void display_date_12format(int hr, int min, int dd, int mm, int yy)
   {
     hour = hr - 12;
   }
-  cout << hour << "h:" << min << "m " << meridiem << ", " << dd << ", " << month << ", " << yy << endl;
+  cout << hour << "h:" << min << "m " << meridiem << ", " << dd << " " << month << ", " << yy << endl;
 }
 
 // Apply timezone 
+void apply_timezone(int hr, int minute, int day, int mon, int yr, int timezone)
+{
+  hr += timezone;
+  int max_days_in_month = get_days_in_month(mon, yr);
+
+  // If the time is pass 24 hour -- pass a day
+  while (hr >= 24)
+  {
+    // minus 24 hour & plus 1 day for the accurate time
+    hr -= 24;
+    day++;
+
+    // check if the day pass the number of day in a month
+    // if yes, it is another month, and day is reset to lower
+    if (day > max_days_in_month)
+    {
+      day = 1;
+      mon++;
+
+      // but if month is pass 12, mean it is already passed a year
+      if (mon > 12)
+      {
+        mon = 1;
+        yr++;
+      }
+    }
+  }
+
+  // If time is less than 0, it is in previous day
+  while (hr < 0)
+  {
+    hr -= 24;
+    day--;
+
+    if (day < 1)
+    {
+      mon--;
+
+      if (mon < 1)
+      {
+        mon = 12;
+        yr--;
+      }
+    }
+    day = get_days_in_month(mon, yr);
+  }
+
+  cout << "Time is updated to timezone " << timezone << " is " << hr << " : " << minute << " , " << day << " " << mon << " " << yr;
+}
 
 int main()
 {
@@ -174,6 +233,7 @@ int main()
   int time_format;
   cin >> time_format;
   time_format = validate_time_format(time_format);
+  cout << endl << "---------------------------------------" << endl;
   if (time_format == 12)
   {
     display_date_12format(hour, minute, day, month, year);
@@ -182,6 +242,17 @@ int main()
   {
     display_date_24format(hour, minute, day, month, year);
   }
+  
+
+  cout << "---------------------------------------" << endl;
+  cout << "By default, the timezone is set to UTC 00:00 timezone." << endl;
+  cout << "Enter the current time zone from -12 to 12 only: ";
+
+  int time_zone_selection = 0;
+  cin >> time_zone_selection;
+  time_zone_selection = validate_time_zone_selection(time_zone_selection);
+  
+  apply_timezone(hour, minute, day, month, year, time_zone_selection);
 
   return 0;
 };
