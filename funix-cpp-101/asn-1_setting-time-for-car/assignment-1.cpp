@@ -191,7 +191,7 @@ void apply_timezone(int hr, int minute, int day, int mon, int yr, int timezone)
     day = get_days_in_month(mon, yr);
   }
 
-  cout << "Time is updated to timezone " << timezone << " is " << hr << " : " << minute << " , " << day << " " << mon << " " << yr;
+  cout << "Time is updated to timezone UTC " << timezone << " is " << hr << " : " << minute << " , " << day << " " << mon << " " << yr << ", " << ", UTC " << timezone;
 }
 
 int main()
