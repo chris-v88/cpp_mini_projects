@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-Tính tổng N số tự nhiên
+Lab 7.3: Tính tổng N số tự nhiên
 Nhập một số N từ bàn phím (N< 100). In ra màn hình tổng của các số từ 1 tới N.
 
 - Tổng các số từ 1 tới N sẽ là 1 + 2 + 3 + …. + N

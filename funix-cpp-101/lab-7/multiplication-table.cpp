@@ -2,6 +2,7 @@
 using namespace std;
 
 /*
+Lab 7.2: Viết chương trình in bảng cửu chương
 - Khai báo 2 biến kiểu nguyên là i, j; trong đó I sẽ đại diện cho các bảng nhân từ 1 tới 9 (số nhân); còn j đại diện cho các số bị nhận
 - Sử dụng vòng lặp for lồng nhau với i bắt đầu từ 1 tới 9, j bắt đầu từ 0 tới 9
 - Với mỗi số i, in ra kết quả i nhận với các số từ 0 tới 9
