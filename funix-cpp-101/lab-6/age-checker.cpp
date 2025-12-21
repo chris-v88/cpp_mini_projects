@@ -12,14 +12,16 @@ void check_age(int age)
 {
     // write conditional statement here
     // output must be all in lower case
-    if (age < 12)
-    {
+    if (age < 0) {
+        cout << "tuổi không hợp lệ" << endl;
+    }
+    else if (age < 12) {
         cout << "thiếu nhi" << endl;
-    } else if (age >= 12 && age <= 50)
-    {
+    }
+    else if (age <= 50) {
         cout << "người trẻ" << endl;
-    } else
-    {
+    }
+    else {
         cout << "người già" << endl;
     }
 }

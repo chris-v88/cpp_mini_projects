@@ -9,13 +9,13 @@ void sign(int n)
 {
     //write conditional statement here to print "positive" or "negative"
     if (n < 0) {
-        cout << "   --> This is a NEGATIVE number" << endl;;
+        cout << "NEGATIVE" << endl;;
     }
     else if (n > 0) {
-        cout << "   --> This is a POSITIVE number" << endl;;
+        cout << "POSITIVE" << endl;;
     }
     else {
-        cout << "   --> This is ZERO" << endl;
+        cout << "ZERO" << endl;
     }
 }
 
