@@ -8,13 +8,13 @@ Biết rằng giờ làm việc là từ
 9h sáng tới 16h chiều. (Từ 12h trưa tới 13h là giờ nghỉ trưa):
 */
 
-bool is_working(int hour)
+void is_working(int hour)
 {
     //write condition here to print "working" or "leisure"
     if (hour < 9 || (hour >= 12 && hour <= 13) || hour > 16)
-        return false;
+        cout << "leisure";
 
-    return true;
+    cout << "working";
 } 
 
 int main()
@@ -23,5 +23,6 @@ int main()
     cout << "Enter the time (in hour) : ";
     int hour = 0;
     cin >> hour;
-    cout << "   --> " << (is_working(hour) ? "working" : "leisure") << endl;
+    cout << endl;
+    is_working(hour);
 }
