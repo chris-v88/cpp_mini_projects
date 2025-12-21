@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+/**
+ * Lab 6.2: Xác định số âm hay số dương:
+ */
+
 void sign(int n)
 {
     //write conditional statement here to print "positive" or "negative"
