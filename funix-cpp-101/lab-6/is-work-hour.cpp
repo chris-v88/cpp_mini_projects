@@ -25,4 +25,6 @@ int main()
     cin >> hour;
     cout << endl;
     is_working(hour);
+
+    return 0;
 }

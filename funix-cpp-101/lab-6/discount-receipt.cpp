@@ -38,4 +38,6 @@ int main()
     cin >> amount;
     float total = discount(amount);
     cout << "Amount to pay after discount: " << total;
+
+    return 0;
 }
