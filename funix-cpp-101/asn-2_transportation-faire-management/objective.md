@@ -78,7 +78,7 @@ Tạo struct XE_TAXI với các thuộc tính sau:
 * Mức tiêu hao nhiên liệu (số lít xăng cho mỗi 100 km)
 * Vân tốc trung bình (km/h)
 * Điểm đến
-        Điểm đi
+* Điểm đi
 
 b) Thực hiện chức năng cho từng loại xe
 
