@@ -88,7 +88,7 @@ b) Thực hiện chức năng cho từng loại xe
   * Nếu quãng đường dưới 3km giá vé là 3000 đồng.
   * Nếu quãng đường từ 3km tới dưới 10km thì giá vé là 7000 đồng.
   * Nếu quãng đường lớn hơn 10km thì giá vé là 9000 đồng.
-    * Viết hàm tính thời gian trung bình xe chạy giữa 2 trạm. Biết mỗi trạm cách nhau 1km
+* Viết hàm tính thời gian trung bình xe chạy giữa 2 trạm. Biết mỗi trạm cách nhau 1km
 
 2) Xe Tải
 

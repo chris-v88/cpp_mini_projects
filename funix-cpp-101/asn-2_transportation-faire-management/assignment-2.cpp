@@ -81,7 +81,8 @@ struct XE_BUYT
     int khach_tb;               // # passengers for 3-10km
     int khach_dai;              // # passengers for >10km
 
-    void set_info() {
+    void set_info() 
+    {
         cout << "Nhap so ghe: ";
         cin >> so_ghe;
 
@@ -105,7 +106,7 @@ struct XE_BUYT
 
         cout << "Nhap so khach duong dai (>10km): ";
         cin >> khach_dai;
-    }
+    };
 };
 
 struct XE_TAXI
