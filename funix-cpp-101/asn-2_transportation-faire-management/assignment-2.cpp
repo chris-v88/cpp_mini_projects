@@ -40,6 +40,34 @@ struct XE_TAI
         cout << "Nhap van toc trung binh (km/h): ";
         cin >> van_toc_tb;
     }
+
+    // tính giá cước vận tải cho xe biết rằng giá cước cho mỗi 1 km
+    float get_freight_cost()
+    {
+        float freight_price = 0.0;
+        // Nếu xe vận chuyển hải sản hoặc đồ tươi sống thì chi phí bảo quản lạnh cao
+        // do đó giá cước là 3000 đồng/1kg
+        if (loai_hang == THUY_SAN)
+        {
+            freight_price = 3000.0;
+        }
+
+        // Nếu xe vận chuyển nông sản
+        // thì giá cước là 500 đồng/1kg
+        else if (loai_hang == NONG_SAN)
+        {
+            freight_price = 500.0;
+        }
+        
+        // Nếu xe vận chuyển hàng tiêu dùng
+        //thì giá cước là 1000 đồng/1kg
+        else if (loai_hang == HANG_TIEU_DUNG)
+        {
+            freight_price = 1000.0;
+        }
+
+        return tai_trong * freight_price;
+    }
 };
 
 struct XE_BUYT
@@ -79,6 +107,7 @@ struct XE_BUYT
         cin >> khach_dai;
     }
 };
+
 struct XE_TAXI
 {
     float quang_duong;          // distance(km)
